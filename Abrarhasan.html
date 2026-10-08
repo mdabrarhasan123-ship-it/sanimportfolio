@@ -1,0 +1,2565 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আবরার হাসান সানিম - Digital HQ</title>
+
+    <!-- Google Fonts for Bengali and English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= GLOBAL VARIABLES ================= */
+        :root {
+            --bg-color: #050505;
+            --bg-secondary: #0b0b0f;
+            --text-main: #f0f0f0;
+            --text-muted: #8f8f8f;
+            --accent-gold: #e5b567;
+            --accent-gold-hover: #c99b52;
+            --panel-bg: rgba(255, 255, 255, 0.036);
+            --panel-border: rgba(255, 255, 255, 0.09);
+            --panel-strong: rgba(255, 255, 255, 0.06);
+            --font-bn: 'Hind Siliguri', sans-serif;
+            --font-en: 'Space Grotesk', sans-serif;
+            --shadow-glow: 0 12px 45px rgba(0, 0, 0, 0.35);
+            --cursor-x: 50%;
+            --cursor-y: 50%;
+        }
+
+        :root[data-theme="light"] {
+            --bg-color: #f7f2e8;
+            --bg-secondary: #f1e7d4;
+            --text-main: #111111;
+            --text-muted: #5e5e5e;
+            --panel-bg: rgba(255, 255, 255, 0.58);
+            --panel-border: rgba(17, 17, 17, 0.08);
+            --panel-strong: rgba(17, 17, 17, 0.05);
+            --shadow-glow: 0 18px 40px rgba(17, 17, 17, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-bn);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            background:
+                radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(229, 181, 103, 0.16), transparent 25%),
+                radial-gradient(circle at 15% 20%, rgba(229, 181, 103, 0.08), transparent 20%),
+                radial-gradient(circle at 85% 10%, rgba(255,255,255,0.06), transparent 20%);
+            opacity: 0.95;
+            transition: background 0.2s ease;
+        }
+
+        body::after {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 34px 34px;
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            opacity: 0.4;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { font: inherit; }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1120px, calc(100% - 28px));
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 200;
+            border-radius: 999px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--panel-border);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+            transition: all 0.35s ease;
+        }
+
+        .navbar.scrolled {
+            top: 12px;
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+
+        .brand-area { display: flex; flex-direction: column; min-width: 150px; }
+
+        .brand-name {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        .brand-sub {
+            font-size: 0.62rem;
+            color: var(--text-muted);
+            letter-spacing: 0.16em;
+            font-family: var(--font-en);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            position: relative;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+            font-family: var(--font-en);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-gold);
+            background: rgba(229,181,103,0.08);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 4px;
+            width: 24px;
+            height: 2px;
+            transform: translateX(-50%) scaleX(0);
+            transform-origin: center;
+            background: var(--accent-gold);
+            border-radius: 999px;
+            transition: transform 0.25s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-controls { display: flex; gap: 10px; align-items: center; }
+
+        .control-btn,
+        .icon-btn {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--panel-border);
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .control-btn {
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.74rem;
+            font-family: var(--font-en);
+            letter-spacing: 0.14em;
+        }
+
+        .control-btn.active {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .control-btn:hover,
+        .icon-btn:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            inset: 0 0 0 auto;
+            width: min(320px, 90vw);
+            padding: 90px 24px 24px;
+            background: rgba(5,5,5,0.94);
+            backdrop-filter: blur(24px);
+            border-left: 1px solid var(--panel-border);
+            transform: translateX(100%);
+            transition: transform 0.35s ease;
+            z-index: 180;
+            display: none;
+        }
+
+        .navbar.open .mobile-drawer { transform: translateX(0); }
+
+        .navbar.open {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.38);
+        }
+
+        .mobile-drawer .nav-links { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+        .mobile-drawer .nav-links a {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 14px;
+        }
+
+        .mobile-drawer .nav-links a.active {
+            background: rgba(229,181,103,0.12);
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            padding: 130px 5% 70px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .hero-section::before,
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            inset: auto;
+            z-index: 1;
+        }
+
+        .hero-section::before {
+            width: 640px;
+            height: 640px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            right: -180px;
+            bottom: -180px;
+            animation: orbit 20s linear infinite;
+        }
+
+        .hero-section::after {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            left: 10%;
+            top: 24%;
+            background: radial-gradient(circle, rgba(229,181,103,0.16), transparent 70%);
+            filter: blur(25px);
+            animation: drift 8s ease-in-out infinite alternate;
+        }
+
+        .bg-wave {
+            position: absolute;
+            inset: -10% -20% auto auto;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(229,181,103,0.06), transparent 65%);
+            filter: blur(14px);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(229,181,103,0.2), transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: screen;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-content-wrapper {
+            display: grid;
+            grid-template-columns: 1.1fr 0.95fr;
+            gap: 40px;
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            align-items: center;
+        }
+
+        .hero-text-area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 20px;
+            position: relative;
+        }
+
+        .hero-badge,
+        .status-pill,
+        .card-label {
+            color: var(--accent-gold);
+            font-size: 0.76rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-family: var(--font-en);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            width: fit-content;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--panel-border);
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            box-shadow: 0 0 18px var(--accent-gold);
+        }
+
+        .main-title {
+            font-size: clamp(2.6rem, 4.4vw, 4.8rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .main-title span {
+            color: var(--accent-gold);
+        }
+
+        .typing-text {
+            font-size: clamp(1.18rem, 2vw, 1.65rem);
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .typing-text span {
+            color: var(--text-main);
+            border-right: 2px solid var(--accent-gold);
+            padding-right: 6px;
+            animation: blink 0.8s infinite;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1.04rem;
+            line-height: 1.8;
+            max-width: 620px;
+            margin-bottom: 28px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary,
+        .btn-outline {
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border-color: var(--panel-border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            background: rgba(255,255,255,0.04);
+            transform: translateY(-2px);
+        }
+
+        .hero-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .info-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: inline-flex;
+            gap: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-family: var(--font-en);
+        }
+
+        .info-value {
+            font-size: 0.94rem;
+            color: var(--accent-gold);
+            font-weight: 500;
+            font-family: var(--font-en);
+        }
+
+        .info-value.bn-text {
+            font-family: var(--font-bn);
+            color: var(--text-main);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--panel-border);
+            color: var(--text-main);
+        }
+
+        .status-pill .pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            box-shadow: 0 0 12px var(--accent-gold);
+            animation: pulse 1.7s ease-in-out infinite;
+        }
+
+        .hero-panel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .hero-portrait-area {
+            position: relative;
+            min-height: 640px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            perspective: 1600px;
+        }
+
+        .hero-portrait-frame {
+            position: relative;
+            width: min(420px, 88%);
+            height: min(720px, 86vh);
+            border-radius: 36px;
+            padding: 24px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.11);
+            box-shadow: 0 30px 90px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+            overflow: hidden;
+            transform: rotateY(-7deg) rotateX(4deg);
+            transition: transform 0.3s ease;
+        }
+
+        .portrait-glow,
+        .portrait-ring {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .portrait-glow {
+            background: radial-gradient(circle at 30% 20%, rgba(229,181,103,0.25), transparent 35%);
+            filter: blur(20px);
+            animation: glowPulse 6s ease-in-out infinite alternate;
+        }
+
+        .portrait-ring {
+            inset: 18px;
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 28px;
+            animation: spinGlow 18s linear infinite;
+        }
+
+        .portrait-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 24px;
+            position: relative;
+            z-index: 2;
+            filter: saturate(1.04) contrast(1.03);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        .portrait-badge {
+            position: absolute;
+            left: 24px;
+            bottom: 24px;
+            z-index: 3;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: rgba(5,5,5,0.65);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.12);
+            font-size: 0.72rem;
+            line-height: 1.45;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-main);
+            font-family: var(--font-en);
+        }
+
+        .floating-card {
+            position: absolute;
+            z-index: 4;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--panel-border);
+            backdrop-filter: blur(14px);
+            font-family: var(--font-en);
+            font-size: 0.76rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-main);
+            box-shadow: var(--shadow-glow);
+            animation: floatUp 4.5s ease-in-out infinite;
+        }
+
+        .floating-card.top { top: 60px; right: 18px; }
+        .floating-card.bottom { bottom: 110px; left: 28px; animation-delay: 1s; }
+        .floating-card.left { top: 170px; left: -14px; animation-delay: 2s; }
+
+        .scroll-indicator {
+            position: absolute;
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            z-index: 4;
+        }
+
+        .scroll-indicator i {
+            width: 24px;
+            height: 38px;
+            border: 1px solid var(--panel-border);
+            border-radius: 999px;
+            position: relative;
+        }
+
+        .scroll-indicator i::after {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            width: 4px;
+            height: 8px;
+            transform: translateX(-50%);
+            border-radius: 999px;
+            background: var(--accent-gold);
+            animation: scroll 1.5s ease-in-out infinite;
+        }
+
+        .hero-quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            max-width: 1500px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 3;
+            padding: 0 5%;
+        }
+
+        .quick-nav-card {
+            padding: 16px 18px;
+            border-radius: 18px;
+            border: 1px solid var(--panel-border);
+            background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+            color: var(--text-main);
+            backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-en);
+            font-size: 0.82rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .quick-nav-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+
+        .quick-nav-card span { color: var(--accent-gold); }
+
+        /* ================= PERSONAL COMMAND CENTER ================= */
+        .command-panel-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 220;
+        }
+
+        .command-panel-backdrop.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .command-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(420px, 95vw);
+            height: 100vh;
+            background: rgba(8, 8, 12, 0.96);
+            border-left: 1px solid var(--panel-border);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            padding: 24px;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: 230;
+            overflow-y: auto;
+        }
+
+        .command-panel.open {
+            transform: translateX(0);
+        }
+
+        .command-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .command-panel h3 {
+            color: var(--accent-gold);
+            margin-top: 6px;
+            font-size: 1.2rem;
+        }
+
+        .command-group {
+            margin-bottom: 18px;
+        }
+
+        .command-label {
+            color: var(--accent-gold);
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-family: var(--font-en);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .command-card,
+        .command-mini,
+        .command-nav-item,
+        .command-search input {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            padding: 12px 14px;
+        }
+
+        .command-card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .command-card p,
+        .command-list li {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .command-nav-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .command-nav-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-main);
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+
+        .command-nav-item:hover {
+            border-color: var(--accent-gold);
+            transform: translateX(2px);
+        }
+
+        .command-search input {
+            width: 100%;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .command-mini {
+            color: var(--text-main);
+            cursor: pointer;
+            text-align: left;
+            font-family: var(--font-en);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .command-list {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .command-list li {
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .command-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+
+        .hero-intro {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .hero-intro .hero-badge {
+            margin-bottom: 0;
+        }
+
+        .accent-text {
+            color: var(--accent-gold);
+        }
+
+        .identity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .identity-card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 140px;
+        }
+
+        .identity-card .card-title {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        .identity-meta {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-family: var(--font-en);
+            font-size: 0.74rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .journey-shell,
+        .learning-shell,
+        .roots-shell,
+        .philosophy-shell,
+        .studio-shell,
+        .connect-shell {
+            display: grid;
+            gap: 20px;
+        }
+
+        .journey-shell {
+            grid-template-columns: 1.1fr 0.9fr;
+        }
+
+        .learning-shell {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .roots-shell {
+            grid-template-columns: 0.95fr 1.05fr;
+        }
+
+        .philosophy-shell {
+            grid-template-columns: 1.1fr 0.9fr;
+        }
+
+        .studio-shell {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .connect-shell {
+            grid-template-columns: 1.1fr 0.9fr;
+        }
+
+        .timeline-rail {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .timeline-entry {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .timeline-entry:last-child {
+            border-bottom: 0;
+        }
+
+        .timeline-entry strong {
+            display: block;
+            color: var(--accent-gold);
+            margin-bottom: 6px;
+        }
+
+        .timeline-entry span {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .learning-progress {
+            display: grid;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .progress-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), rgba(255,255,255,0.2));
+            border-radius: inherit;
+        }
+
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .milestone-card {
+            min-height: 100%;
+        }
+
+        .milestone-year {
+            color: var(--accent-gold);
+            font-family: var(--font-en);
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .roots-grid,
+        .philosophy-grid,
+        .studio-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .roots-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid var(--panel-border);
+            background: rgba(255,255,255,0.04);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .contact-form textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .footer-shell {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.9rem;
+        }
+
+        .hero-portrait-frame {
+            transform-style: preserve-3d;
+        }
+
+        .hero-portrait-frame.is-hovered {
+            box-shadow: 0 40px 120px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+
+        .hero-portrait-frame .portrait-image {
+            transform: translateZ(30px);
+        }
+
+        @media (max-width: 1080px) {
+            .journey-shell,
+            .learning-shell,
+            .roots-shell,
+            .philosophy-shell,
+            .connect-shell,
+            .studio-shell {
+                grid-template-columns: 1fr;
+            }
+            .milestone-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 860px) {
+            .nav-links { display: none; }
+            .mobile-drawer { display: block; }
+            .identity-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-quick-grid { grid-template-columns: 1fr 1fr; }
+            .milestone-grid,
+            .roots-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-quick-grid { grid-template-columns: 1fr; }
+            .command-grid { grid-template-columns: 1fr; }
+            .footer-shell { flex-direction: column; align-items: flex-start; }
+        }
+
+        /* ================= CONTENT SECTIONS ================= */
+        .content-section {
+            padding: 90px 5% 70px;
+            max-width: 1500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+        }
+
+        .section-header {
+            margin-bottom: 38px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 2.3vw, 2.4rem);
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 34px;
+            height: 2px;
+            background: var(--accent-gold);
+            border-radius: 999px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: var(--font-en);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 20px;
+        }
+
+        .bento-grid.large {
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        }
+
+        .glass-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 22px;
+            padding: 24px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(229,181,103,0.08), transparent 38%);
+            pointer-events: none;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-gold);
+        }
+
+        .glass-card.featured { padding: 28px; }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+            line-height: 1.25;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: rgba(229,181,103,0.1);
+            color: var(--accent-gold);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-family: var(--font-en);
+            border: 1px solid rgba(229,181,103,0.16);
+        }
+
+        .quote-block {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--panel-border);
+            color: var(--text-main);
+            line-height: 1.7;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .stat-card {
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--panel-border);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-family: var(--font-en);
+            color: var(--accent-gold);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-family: var(--font-en);
+        }
+
+        .timeline-list,
+        .timeline-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .timeline-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .timeline-item:last-child { border-bottom: 0; }
+
+        .timeline-item strong {
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .timeline-item span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .tree-accordion { display: flex; flex-direction: column; gap: 12px; }
+
+        .tree-details {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--panel-border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .tree-summary {
+            padding: 16px 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+
+        .tree-summary::after {
+            content: '+';
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .tree-details[open] .tree-summary::after { content: '-'; transform: rotate(180deg); }
+
+        .tree-content {
+            padding: 0 18px 16px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 8px;
+        }
+
+        .tree-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-left: 12px;
+            margin-top: 10px;
+            border-left: 1px solid var(--panel-border);
+        }
+
+        .tree-item-title {
+            color: var(--accent-gold);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .tree-item-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        .project-meta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; color: var(--text-muted); font-size: 0.9rem; }
+
+        .project-meta strong { color: var(--text-main); }
+
+        .skill-card,
+        .cert-card,
+        .research-card,
+        .gallery-card {
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--panel-border);
+            min-height: 100%;
+        }
+
+        .skill-card h4,
+        .cert-card h4,
+        .research-card h4,
+        .gallery-card h4 {
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .skill-card p,
+        .cert-card p,
+        .research-card p,
+        .gallery-card p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .image-frame {
+            border-radius: 18px;
+            min-height: 190px;
+            background: linear-gradient(135deg, rgba(229,181,103,0.14), rgba(255,255,255,0.04));
+            border: 1px solid var(--panel-border);
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-frame::before,
+        .image-frame::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(14px);
+        }
+
+        .image-frame::before { width: 160px; height: 160px; top: -40px; right: -25px; background: rgba(229,181,103,0.18); }
+        .image-frame::after { width: 120px; height: 120px; bottom: -30px; left: -20px; background: rgba(255,255,255,0.08); }
+
+        .cta-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100%;
+        }
+
+        .social-dock {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .social-dock a {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--panel-border);
+            color: var(--text-main);
+            font-family: var(--font-en);
+            font-size: 0.76rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .tabs {
+            display: inline-flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--panel-border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn.active {
+            background: rgba(229,181,103,0.14);
+            color: var(--accent-gold);
+            border-color: rgba(229,181,103,0.25);
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.72);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 250;
+            padding: 24px;
+        }
+
+        .modal-backdrop.open { display: flex; }
+
+        .modal-card {
+            width: min(560px, 100%);
+            background: rgba(10,10,14,0.96);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            padding: 24px;
+            position: relative;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .modal-card h3 { margin-bottom: 12px; color: var(--accent-gold); }
+        .modal-card p { color: var(--text-muted); line-height: 1.8; }
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(38px);
+            transition: all 0.8s cubic-bezier(0.5,0,0,1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .particle-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(229,181,103,0.7);
+            box-shadow: 0 0 10px rgba(229,181,103,0.5);
+            animation: driftParticle 10s linear infinite;
+        }
+
+        @keyframes blink { 0%,100% { border-color: transparent; } 50% { border-color: var(--accent-gold); } }
+        @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.4); opacity: 1; } }
+        @keyframes orbit { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes drift { 0% { transform: translate3d(0,0,0);} 100% { transform: translate3d(20px,-20px,0); } }
+        @keyframes floatUp { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px);} }
+        @keyframes glowPulse { 0% { opacity: 0.8; } 100% { opacity: 1; } }
+        @keyframes spinGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes scroll { 0% { transform: translate(-50%, 0); opacity: 0; } 50% { opacity: 1; } 100% { transform: translate(-50%, 12px); opacity: 0; } }
+        @keyframes driftParticle { 0% { transform: translate3d(0,0,0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate3d(90px,-140px,0); opacity: 0; } }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1080px) {
+            .hero-content-wrapper { grid-template-columns: 1fr; gap: 28px; }
+            .hero-portrait-area { min-height: 520px; }
+            .hero-text-area { padding-right: 0; }
+            .hero-quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 860px) {
+            .navbar { padding: 10px 12px; border-radius: 20px; }
+            .nav-links { display: none; }
+            .mobile-drawer { display: block; }
+            .hero-panel-grid { grid-template-columns: 1fr; }
+            .info-panel { flex-wrap: wrap; gap: 12px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { padding: 110px 5% 70px; }
+            .hero-portrait-area { min-height: 450px; }
+            .hero-portrait-frame { width: min(340px, 88%); height: min(560px, 84vh); }
+            .floating-card { display: none; }
+            .hero-quick-grid { grid-template-columns: 1fr; }
+            .content-section { padding: 70px 5% 60px; }
+            .section-title { gap: 10px; }
+            .section-title::before { width: 24px; }
+            .bento-grid, .bento-grid.large { grid-template-columns: 1fr; }
+            .button-group { flex-direction: column; align-items: flex-start; }
+            .stat-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="particle-layer" id="particleLayer"></div>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="command-panel-backdrop" id="commandPanelBackdrop"></div>
+
+    <!-- ================= PERSONAL COMMAND CENTER ================= -->
+    <aside class="command-panel" id="commandPanel">
+        <div class="command-panel-header">
+            <div>
+                <div class="card-label" data-i18n="command.title">Personal Command Center</div>
+                <h3 data-i18n="command.heading">Abrar's private control room</h3>
+            </div>
+            <button class="icon-btn" id="closeCommandPanel" aria-label="Close command center">✕</button>
+        </div>
+
+        <div class="command-group">
+            <label class="command-label" data-i18n="command.summary">Profile Summary</label>
+            <div class="command-card">
+                <strong data-i18n="command.profileName">Abrar Hasan Sanim</strong>
+                <p data-i18n="command.profileText">A self-taught student, writer, researcher, and web builder from Narayanganj whose work blends discipline, curiosity, and craft.</p>
+            </div>
+        </div>
+
+        <div class="command-group">
+            <label class="command-label" data-i18n="command.quickNav">Quick Navigation</label>
+            <div class="command-nav-list">
+                <a class="command-nav-item" href="#journey"><span data-i18n="nav.journey">Journey</span><span>↗</span></a>
+                <a class="command-nav-item" href="#learning"><span data-i18n="nav.learning">Learning</span><span>↗</span></a>
+                <a class="command-nav-item" href="#milestones"><span data-i18n="nav.milestones">Milestones</span><span>↗</span></a>
+                <a class="command-nav-item" href="#roots"><span data-i18n="nav.roots">Roots</span><span>↗</span></a>
+            </div>
+        </div>
+
+        <div class="command-group">
+            <label class="command-label" data-i18n="command.search">Search</label>
+            <div class="command-search">
+                <input type="text" placeholder="Search the universe" data-i18n-placeholder="command.searchPlaceholder">
+            </div>
+        </div>
+
+        <div class="command-grid">
+            <button class="command-mini" data-i18n="command.theme">Theme</button>
+            <button class="command-mini" data-i18n="command.language">Language</button>
+            <button class="command-mini" data-i18n="command.map">Website Map</button>
+            <button class="command-mini" data-i18n="command.close">Close</button>
+        </div>
+
+        <div class="command-group">
+            <label class="command-label" data-i18n="command.updates">Recent Updates</label>
+            <ul class="command-list">
+                <li data-i18n="command.updateOne">Primary school, college, and scholarship milestones now preserved in the archive.</li>
+                <li data-i18n="command.updateTwo">Family, philosophy, creative work, and interests are now mapped into the new HQ.</li>
+                <li data-i18n="command.updateThree">The personal operating system continues to grow with real history and lived detail.</li>
+            </ul>
+        </div>
+
+        <div class="command-group">
+            <label class="command-label" data-i18n="command.mapLabel">Website Map</label>
+            <ul class="command-list">
+                <li data-i18n="nav.home">Home</li>
+                <li data-i18n="nav.journey">Journey</li>
+                <li data-i18n="nav.learning">Learning</li>
+                <li data-i18n="nav.milestones">Milestones</li>
+                <li data-i18n="nav.roots">Roots</li>
+                <li data-i18n="nav.philosophy">Philosophy</li>
+                <li data-i18n="nav.studio">Studio</li>
+                <li data-i18n="nav.connect">Connect</li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- ================= FLOATING NAVBAR ================= -->
+    <nav class="navbar" id="siteNavbar">
+        <div class="brand-area">
+            <div class="brand-name" data-i18n="brand.name">Abrar.net</div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home" class="active" data-i18n="nav.home">Home</a></li>
+            <li><a href="#journey" data-i18n="nav.journey">Journey</a></li>
+            <li><a href="#learning" data-i18n="nav.learning">Learning</a></li>
+            <li><a href="#milestones" data-i18n="nav.milestones">Milestones</a></li>
+            <li><a href="#roots" data-i18n="nav.roots">Roots</a></li>
+            <li><a href="#philosophy" data-i18n="nav.philosophy">Philosophy</a></li>
+            <li><a href="#studio" data-i18n="nav.studio">Studio</a></li>
+            <li><a href="#connect" data-i18n="nav.connect">Connect</a></li>
+        </ul>
+
+        <div class="nav-controls">
+            <div style="display:flex; background:rgba(255,255,255,0.04); border-radius:999px; border:1px solid var(--panel-border); overflow:hidden;">
+                <button class="control-btn active" data-language="bn" style="border:none; border-radius:0;">BAN</button>
+                <button class="control-btn" data-language="en" style="border:none; border-radius:0; background:transparent; color:var(--text-muted);">ENG</button>
+            </div>
+            <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+            <button class="icon-btn" id="menuToggle" aria-label="Toggle navigation">☰</button>
+        </div>
+
+        <div class="mobile-drawer">
+            <ul class="nav-links">
+                <li><a href="#home" class="active" data-i18n="nav.home">Home</a></li>
+                <li><a href="#journey" data-i18n="nav.journey">Journey</a></li>
+                <li><a href="#learning" data-i18n="nav.learning">Learning</a></li>
+                <li><a href="#milestones" data-i18n="nav.milestones">Milestones</a></li>
+                <li><a href="#roots" data-i18n="nav.roots">Roots</a></li>
+                <li><a href="#philosophy" data-i18n="nav.philosophy">Philosophy</a></li>
+                <li><a href="#studio" data-i18n="nav.studio">Studio</a></li>
+                <li><a href="#connect" data-i18n="nav.connect">Connect</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section id="home" class="hero-section">
+        <div class="particle-layer" aria-hidden="true"></div>
+        <div class="bg-wave"></div>
+
+        <div class="hero-content-wrapper">
+            <div class="hero-text-area reveal">
+                <div class="hero-intro">
+                    <div class="hero-badge"><span class="dot"></span><span data-i18n="hero.badge">Digital HQ / Narayanganj</span></div>
+                    <h1 class="main-title"><span class="accent-text" data-i18n="hero.firstName">আবরার হাসান</span> <span class="accent-text" data-i18n="hero.lastName">সানিম</span></h1>
+                    <div class="typing-text"><span data-i18n="hero.prefix">আমি একজন</span> <span id="typewriter"></span></div>
+                </div>
+
+                <p class="description" data-i18n="hero.description">
+                    আমি নারায়ণগঞ্জে বড় হওয়া একজন স্বশিক্ষিত নির্মাতা, যিনি বই, গবেষণা, ওয়েব, ব্লেন্ডার আর মানুষের মনস্তত্ত্বকে একসাথে ভাবেন। আমার কাজের কেন্দ্রবিন্দু — সংগঠিত ধারণা, সুন্দর ইন্টারফেস, আর নিজের গল্পের একটি স্থায়ী ডিজিটাল ঘর।
+                </p>
+
+                <div class="hero-story">
+                    <div class="quote-block" data-i18n="hero.story">“মানুষের মৌলিক মনস্তত্ত্বই যেখানে স্বার্থকেন্দ্রিক, সেখানে নৈতিকতার অবস্থান কেবলই আপেক্ষিক।”</div>
+                </div>
+
+                <div class="button-group">
+                    <a href="#journey" class="btn-primary" data-i18n="hero.btnJourney">Enter the universe</a>
+                    <a href="#connect" class="btn-outline" data-i18n="hero.btnConnect">Connect</a>
+                </div>
+
+                <div class="identity-grid">
+                    <div class="glass-card identity-card">
+                        <div class="card-label" data-i18n="hero.identityTitle">Digital Identity</div>
+                        <h3 class="card-title" data-i18n="hero.identityValue">Student • reader • writer • research enthusiast.</h3>
+                        <div class="identity-meta"><span data-i18n="hero.identityMetaOne">Private world</span><span data-i18n="hero.identityMetaTwo">Intentional</span></div>
+                    </div>
+                    <div class="glass-card identity-card">
+                        <div class="card-label" data-i18n="hero.goalTitle">Current Goal</div>
+                        <h3 class="card-title" data-i18n="hero.goalValue">Build a durable archive of thought, craft, and discipline.</h3>
+                        <div class="identity-meta"><span data-i18n="hero.goalMetaOne">Long term</span><span data-i18n="hero.goalMetaTwo">Systematic</span></div>
+                    </div>
+                    <div class="glass-card identity-card">
+                        <div class="card-label" data-i18n="hero.focusTitle">Learning Focus</div>
+                        <h3 class="card-title" data-i18n="hero.focusValue">Academic research, geopolitics, philosophy, and web systems.</h3>
+                        <div class="identity-meta"><span data-i18n="hero.focusMetaOne">Research</span><span data-i18n="hero.focusMetaTwo">Craft</span></div>
+                    </div>
+                    <div class="glass-card identity-card">
+                        <div class="card-label" data-i18n="hero.missionTitle">Current Mission</div>
+                        <h3 class="card-title" data-i18n="hero.missionValue">Create a personal digital home that feels intimate, rigorous, and enduring.</h3>
+                        <div class="identity-meta"><span data-i18n="hero.missionMetaOne">Presence</span><span data-i18n="hero.missionMetaTwo">Meaning</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-portrait-area reveal">
+                <div class="hero-portrait-frame">
+                    <div class="portrait-glow"></div>
+                    <div class="portrait-ring"></div>
+                    <img src="abrar.png" alt="Abrar Hasan Sanim portrait" class="portrait-image" id="myPortrait">
+                    <div class="portrait-badge" data-i18n="hero.portraitBadge">CURRENT FOCUS<br>AI × UX × Systems</div>
+                </div>
+                <div class="floating-card top" data-i18n="hero.floatOne">Live Studio</div>
+                <div class="floating-card bottom" data-i18n="hero.floatTwo">Ready to Build</div>
+                <div class="floating-card left" data-i18n="hero.floatThree">Status: Active</div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator"><span data-i18n="hero.scroll">Scroll</span><i></i></div>
+    </section>
+
+    <div class="hero-quick-grid reveal">
+        <a class="quick-nav-card" href="#journey"><span data-i18n="nav.journey">Journey</span> <span>↗</span></a>
+        <a class="quick-nav-card" href="#learning"><span data-i18n="nav.learning">Learning</span> <span>↗</span></a>
+        <a class="quick-nav-card" href="#milestones"><span data-i18n="nav.milestones">Milestones</span> <span>↗</span></a>
+        <a class="quick-nav-card" href="#connect"><span data-i18n="nav.connect">Connect</span> <span>↗</span></a>
+    </div>
+
+    <!-- ================= JOURNEY SECTION ================= -->
+    <section id="journey" class="content-section">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="journey.title">Journey</h2>
+            <div class="section-subtitle" data-i18n="journey.subtitle">Cinematic life path</div>
+        </div>
+
+        <div class="journey-shell reveal">
+            <div class="glass-card">
+                <div class="card-label" data-i18n="journey.label">Origin story</div>
+                <h3 class="card-title" data-i18n="journey.heading">Born in Narayanganj, shaped by family, books, and the need to understand the world.</h3>
+                <p class="card-text" data-i18n="journey.description">My path has moved from early schooling and academic consistency to research, debate, writing, and building a lasting digital presence.</p>
+                <div class="quote-block" data-i18n="journey.quote">“The earliest lessons came through observation, family influence, and the quiet need to understand the world.”</div>
+            </div>
+            <div class="glass-card timeline-rail">
+                <div class="timeline-entry">
+                    <strong data-i18n="journey.entryOneTitle">2014–2019</strong>
+                    <span data-i18n="journey.entryOneText">Studied at Godnail Govt Primary School; PSC A+ and early discipline created the foundation.</span>
+                </div>
+                <div class="timeline-entry">
+                    <strong data-i18n="journey.entryTwoTitle">2020–2024</strong>
+                    <span data-i18n="journey.entryTwoText">Continued at Bornomala Academy and built a strong record in academics, debate, and writing.</span>
+                </div>
+                <div class="timeline-entry">
+                    <strong data-i18n="journey.entryThreeTitle">2025–Now</strong>
+                    <span data-i18n="journey.entryThreeText">Admitted to Dhaka College while expanding into web systems, geopolitics, philosophy, and personal archives.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= LEARNING SECTION ================= -->
+    <section id="learning" class="content-section">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="learning.title">Learning</h2>
+            <div class="section-subtitle" data-i18n="learning.subtitle">Academic archive and study rhythm</div>
+        </div>
+
+        <div class="learning-shell reveal">
+            <div class="glass-card">
+                <div class="card-label" data-i18n="learning.labelOne">Study archive</div>
+                <h3 class="card-title" data-i18n="learning.headingOne">Books, notes, research, and long-form observation form the core of my learning rhythm.</h3>
+                <div class="timeline-list">
+                    <div class="timeline-item">
+                        <strong data-i18n="learning.itemOneTitle">Academic path</strong>
+                        <span data-i18n="learning.itemOneText">My academic path began at Godnail, continued through Bornomala Academy, and now extends into Dhaka College with broader research and writing.</span>
+                    </div>
+                    <div class="timeline-item">
+                        <strong data-i18n="learning.itemTwoTitle">Current reading</strong>
+                        <span data-i18n="learning.itemTwoText">Geopolitics, history, philosophy, military strategy, web systems, and human psychology remain central themes.</span>
+                    </div>
+                </div>
+                <div class="learning-progress">
+                    <div class="progress-row"><span data-i18n="learning.progressOne">Design thinking</span><strong>92%</strong></div>
+                    <div class="progress-bar"><span style="width:92%"></span></div>
+                    <div class="progress-row"><span data-i18n="learning.progressTwo">Research depth</span><strong>88%</strong></div>
+                    <div class="progress-bar"><span style="width:88%"></span></div>
+                    <div class="progress-row"><span data-i18n="learning.progressThree">Writing discipline</span><strong>86%</strong></div>
+                    <div class="progress-bar"><span style="width:86%"></span></div>
+                </div>
+            </div>
+            <div class="glass-card">
+                <div class="card-label" data-i18n="learning.labelTwo">Knowledge map</div>
+                <div class="tree-accordion">
+                    <details class="tree-details" open>
+                        <summary class="tree-summary" data-i18n="learning.topicOne">Geopolitical study</summary>
+                        <div class="tree-content">
+                            <div class="tree-list">
+                                <div class="tree-item">
+                                    <div class="tree-item-title" data-i18n="learning.topicOneItemOne">World systems</div>
+                                    <div class="tree-item-desc" data-i18n="learning.topicOneItemOneText">Understanding power, borders, and perception through history and current events.</div>
+                                </div>
+                                <div class="tree-item">
+                                    <div class="tree-item-title" data-i18n="learning.topicOneItemTwo">Strategic reading</div>
+                                    <div class="tree-item-desc" data-i18n="learning.topicOneItemTwoText">Tracking ideas that connect policy, culture, and global behavior.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                    <details class="tree-details">
+                        <summary class="tree-summary" data-i18n="learning.topicTwo">Military studies</summary>
+                        <div class="tree-content">
+                            <div class="tree-list">
+                                <div class="tree-item">
+                                    <div class="tree-item-title" data-i18n="learning.topicTwoItemOne">Strategy</div>
+                                    <div class="tree-item-desc" data-i18n="learning.topicTwoItemOneText">Reading the logic behind campaigns, systems, and human decision-making.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                    <details class="tree-details">
+                        <summary class="tree-summary" data-i18n="learning.topicThree">Creative systems</summary>
+                        <div class="tree-content">
+                            <div class="tree-list">
+                                <div class="tree-item">
+                                    <div class="tree-item-title" data-i18n="learning.topicThreeItemOne">Blender & UI</div>
+                                    <div class="tree-item-desc" data-i18n="learning.topicThreeItemOneText">Exploring 3D, composition, atmosphere, and modular interface thinking.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MILESTONES SECTION ================= -->
+    <section id="milestones" class="content-section">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="milestones.title">Milestones</h2>
+            <div class="section-subtitle" data-i18n="milestones.subtitle">Achievements, awards, and turning points</div>
+        </div>
+
+        <div class="milestone-grid reveal">
+            <div class="glass-card milestone-card">
+                <div class="milestone-year">2025</div>
+                <h3 class="card-title" data-i18n="milestones.oneTitle">SSC excellence</h3>
+                <p class="card-text" data-i18n="milestones.oneText">Achieved GPA 4.89 in SSC and secured a General Grade Merit Scholarship.</p>
+            </div>
+            <div class="glass-card milestone-card">
+                <div class="milestone-year">2024</div>
+                <h3 class="card-title" data-i18n="milestones.twoTitle">Debate and writing recognition</h3>
+                <p class="card-text" data-i18n="milestones.twoText">Won recognition as Man of the Tournament in debate competitions and secured 1st place in essay writing.</p>
+            </div>
+            <div class="glass-card milestone-card">
+                <div class="milestone-year">2025</div>
+                <h3 class="card-title" data-i18n="milestones.threeTitle">Digital archive launch</h3>
+                <p class="card-text" data-i18n="milestones.threeText">Built this personal digital archive to hold education, achievements, philosophy, and creative work in one place.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ROOTS SECTION ================= -->
+    <section id="roots" class="content-section">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="roots.title">Roots</h2>
+            <div class="section-subtitle" data-i18n="roots.subtitle">Family, hometown, and origins</div>
+        </div>
+
+        <div class="roots-shell reveal">
+            <div class="glass-card">
+                <div class="card-label" data-i18n="roots.labelOne">Hometown memory</div>
+                <h3 class="card-title" data-i18n="roots.headingOne">Narayanganj remains the place where my earliest sense of home, rhythm, and belonging was formed.</h3>
+                <p class="card-text" data-i18n="roots.descriptionOne">My family remains the strongest source of strength, patience, and conviction — and those values continue to shape how I think and build.</p>
+                <div class="quote-block" data-i18n="roots.quote">“What you inherit from home is not only memory, but the way you later choose to build.”</div>
+                <div style="margin-top:14px; padding:10px 12px; border-radius:14px; border:1px solid var(--panel-border); background:rgba(255,255,255,0.03); color:var(--text-muted); font-size:0.95rem;">
+                    Family remains an anchor of patience, conviction, and care.
+                </div>
+            </div>
+            <div class="roots-grid">
+                <div class="glass-card">
+                    <div class="card-label" data-i18n="roots.labelTwo">Family anchors</div>
+                    <p class="card-text" data-i18n="roots.valueText">Father Manik Mia, mother Panna Akter, and sisters Sumaiya and Samira are the core of my emotional and moral foundation.</p>
+                </div>
+                <div class="glass-card">
+                    <div class="card-label" data-i18n="roots.labelThree">Origin note</div>
+                    <p class="card-text" data-i18n="roots.originText">The earliest lessons came through observation, family influence, and the quiet need to understand the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PHILOSOPHY SECTION ================= -->
+    <section id="philosophy" class="content-section">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="philosophy.title">Philosophy</h2>
+            <div class="section-subtitle" data-i18n="philosophy.subtitle">Beliefs, principles, worldview</div>
+        </div>
+
+        <div class="philosophy-shell reveal">
+            <div class="glass-card">
+                <div class="card-label" data-i18n="philosophy.labelOne">Private worldview</div>
+                <h3 class="card-title" data-i18n="philosophy.headingOne">The self becomes meaningful through disciplined work, honest thought, and clear values.</h3>
+                <p class="card-text" data-i18n="philosophy.descriptionOne">Existence precedes identity, and a good life is not loud — it is consistent, grounded, and built without vanity.</p>
+                <div class="quote-block" data-i18n="philosophy.quote">“Where basic human psychology is self-centered, morality is purely relative.”</div>
+            </div>
+            <div class="philosophy-grid">
+                <div class="glass-card">
+                    <div class="card-label" data-i18n="philosophy.labelTwo">Core principles</div>
+                    <div class="tag-container">
+                        <span class="tag" data-i18n="philosophy.tagOne">Purpose</span>
+                        <span class="tag" data-i18n="philosophy.tagTwo">Truth</span>
+                        <span class="tag" data-i18n="philosophy.tagThree">Discipline</span>
+                        <span class="tag" data-i18n="philosophy.tagFour">Solitude</span>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="card-label" data-i18n="philosophy.labelThree">Current reflection</div>
+                    <p class="card-text" data-i18n="philosophy.reflection">The future is built not by noise alone, but by repeated acts of clarity, sincerity, and care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= STUDIO SECTION ================= -->
+    <section id="studio" class="content-section">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="studio.title">Studio</h2>
+            <div class="section-subtitle" data-i18n="studio.subtitle">Hobbies, experiments, and creative work</div>
+        </div>
+
+        <div class="studio-shell reveal">
+            <div class="glass-card">
+                <div class="card-label" data-i18n="studio.labelOne">Creative practice</div>
+                <h3 class="card-title" data-i18n="studio.headingOne">Blender, photography, web development, and controlled experimentation all belong to the same studio mindset.</h3>
+                <p class="card-text" data-i18n="studio.descriptionOne">The studio is where curiosity becomes form — whether in code, 3D, or visual storytelling.</p>
+                <div style="margin-top:14px; padding:12px; border-radius:14px; border:1px solid var(--panel-border); background:rgba(255,255,255,0.03); color:var(--text-muted); font-size:0.95rem;">
+                    Photography and visual experimentation continue as a quiet extension of the studio practice.
+                </div>
+            </div>
+            <div class="studio-grid">
+                <div class="glass-card">
+                    <div class="card-label" data-i18n="studio.labelTwo">Web systems</div>
+                    <p class="card-text" data-i18n="studio.webText">Built this portfolio as a live archive of thought, using HTML, CSS, and JavaScript to shape a modular interface with clear motion.</p>
+                </div>
+                <div class="glass-card">
+                    <div class="card-label" data-i18n="studio.labelThree">Blender & visual language</div>
+                    <p class="card-text" data-i18n="studio.blenderText">Using 3D, atmosphere, and composition to create cinematic moods and experiment with visual form.</p>
+                    <div style="margin-top:12px; padding:10px 12px; border-radius:14px; border:1px solid var(--panel-border); background:rgba(255,255,255,0.03); color:var(--text-muted); font-size:0.92rem;">
+                        Strategic study and visual composition remain part of the same creative system.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONNECT SECTION ================= -->
+    <section id="connect" class="content-section" style="margin-bottom: 100px;">
+        <div class="section-header reveal">
+            <h2 class="section-title" data-i18n="connect.title">Connect</h2>
+            <div class="section-subtitle" data-i18n="connect.subtitle">Digital presence and conversation</div>
+        </div>
+
+        <div class="connect-shell reveal">
+            <div class="glass-card">
+                <div class="card-label" data-i18n="connect.labelOne">Reach out</div>
+                <h3 class="card-title" data-i18n="connect.headingOne">A private channel for conversation, collaboration, or a new idea.</h3>
+                <p class="card-text" data-i18n="connect.descriptionOne">If something resonates, the door stays open. The universe grows through exchange.</p>
+                <div class="social-dock">
+                    <a href="#" data-i18n="connect.socialOne">Email</a>
+                    <a href="https://www.facebook.com/ab.r.ar.842031" target="_blank" rel="noopener noreferrer" data-i18n="connect.socialTwo">Facebook</a>
+                    <a href="https://www.instagram.com/_a_h_s_0/" target="_blank" rel="noopener noreferrer" data-i18n="connect.socialThree">Instagram</a>
+                    <a href="https://github.com/mdabrarhasan123-ship-it" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://wa.me/8801969099418" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                </div>
+                <p class="card-text" style="margin-top:14px;"><!-- TODO: Add personal email --></p>
+                <p class="card-text" style="margin-top:10px;">Narayanganj, Bangladesh</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-label" data-i18n="connect.labelTwo">Message form</div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Name" data-i18n-placeholder="connect.formName">
+                    <input type="email" placeholder="Email" data-i18n-placeholder="connect.formEmail">
+                    <textarea placeholder="Message" data-i18n-placeholder="connect.formMessage"></textarea>
+                    <button class="btn-primary" type="button" data-i18n="connect.formSubmit">Send message</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="footer-shell">
+            <span data-i18n="connect.footerOne">Abrar.net — a personal universe shaped with care.</span>
+            <span data-i18n="connect.footerTwo">Built as a private operating system for thought, work, and memory.</span>
+        </footer>
+    </section>
+
+    <script>
+        /* ================= INITIALIZERS ================= */
+        const translations = {
+            bn: {
+                'brand.name': 'Abrar.net',
+                'nav.home': 'হোম',
+                'nav.journey': 'যাত্রা',
+                'nav.learning': 'শিক্ষা',
+                'nav.milestones': 'মাইলস্টোন',
+                'nav.roots': 'শিকড়',
+                'nav.philosophy': 'দর্শন',
+                'nav.studio': 'স্টুডিও',
+                'nav.connect': 'যোগাযোগ',
+                'hero.badge': 'ডিজিটাল এইচকিউ / নারায়ণগঞ্জ',
+                'hero.firstName': 'আবরার হাসান',
+                'hero.lastName': 'সানিম',
+                'hero.prefix': 'আমি একজন',
+                'hero.description': 'আমি নারায়ণগঞ্জে বড় হওয়া একজন স্বশিক্ষিত নির্মাতা, যিনি বই, গবেষণা, ওয়েব, ব্লেন্ডার আর মানুষের মনস্তত্ত্বকে একসাথে ভাবেন। আমার কাজের কেন্দ্রবিন্দু — সংগঠিত ধারণা, সুন্দর ইন্টারফেস, আর নিজের গল্পের একটি স্থায়ী ডিজিটাল ঘর।',
+                'hero.story': '“মানুষের মৌলিক মনস্তত্ত্বই যেখানে স্বার্থকেন্দ্রিক, সেখানে নৈতিকতার অবস্থান কেবলই আপেক্ষিক।”',
+                'hero.btnJourney': 'ইউনিভার্সে প্রবেশ করুন',
+                'hero.btnConnect': 'যোগাযোগ করুন',
+                'hero.identityTitle': 'ডিজিটাল পরিচয়',
+                'hero.identityValue': 'ছাত্র • পাঠক • লেখক • গবেষণা অনুরাগী।',
+                'hero.identityMetaOne': 'ব্যক্তিগত জগৎ',
+                'hero.identityMetaTwo': 'ইচ্ছাকৃত',
+                'hero.goalTitle': 'বর্তমান লক্ষ্য',
+                'hero.goalValue': 'একটি স্থায়ী জ্ঞান-আর্কাইভ তৈরি করা, যেখানে চিন্তা, কৌশল আর শৃঙ্খলা একসাথে থাকে।',
+                'hero.goalMetaOne': 'দীর্ঘমেয়াদী',
+                'hero.goalMetaTwo': 'সিস্টেম্যাটিক',
+                'hero.focusTitle': 'শিক্ষার ফোকাস',
+                'hero.focusValue': 'একাডেমিক গবেষণা, ভূরাজনীতি, দর্শন আর ওয়েব সিস্টেম।',
+                'hero.focusMetaOne': 'গবেষণা',
+                'hero.focusMetaTwo': 'কলা',
+                'hero.missionTitle': 'বর্তমান মিশন',
+                'hero.missionValue': 'একটি ব্যক্তিগত ডিজিটাল ঘর তৈরি করা, যা নৈকট্য, কঠোরতা আর স্থায়িত্ব বহন করে।',
+                'hero.missionMetaOne': 'উপস্থিতি',
+                'hero.missionMetaTwo': 'অর্থ',
+                'hero.portraitBadge': 'বর্তমান ফোকাস<br>AI × UX × Systems',
+                'hero.floatOne': 'সরাসরি স্টুডিও',
+                'hero.floatTwo': 'তৈরি হওয়ার জন্য প্রস্তুত',
+                'hero.floatThree': 'অবস্থা: সক্রিয়',
+                'hero.scroll': 'স্ক্রল',
+                'journey.title': 'যাত্রা',
+                'journey.subtitle': 'সিনেমাটিক জীবনের পথ',
+                'journey.label': 'উৎপত্তির গল্প',
+                'journey.heading': 'নারায়ণগঞ্জে বড় হওয়া, পরিবার, বই আর বিশ্ব বোঝার তাগিদে গড়ে ওঠা একটি জীবন।',
+                'journey.description': 'আমার পথ শৈশবের শিক্ষার পর থেকে একাডেমিক ধারাবাহিকতা, বিতর্ক, লেখালেখি আর ডিজিটাল উপস্থিতির দিকে এগিয়েছে।',
+                'journey.quote': '“প্রথম পাঠগুলো এসেছে পর্যবেক্ষণ, পরিবারের প্রভাব আর বিশ্বের বুঝতে চাওয়ার নীরব তাগিদ থেকে।”',
+                'journey.entryOneTitle': '২০১৪–২০১৯',
+                'journey.entryOneText': 'গোদনাইল সরকারি প্রাথমিক বিদ্যালয়ে পড়াশোনা; পিএসসি এ+ ও প্রারম্ভিক শৃঙ্খলা ভিত্তি তৈরি করে।',
+                'journey.entryTwoTitle': '২০২০–২০২৪',
+                'journey.entryTwoText': 'বর্ণমালা একাডেমিতে অধ্যয়ন চালিয়ে academics, debate ও writing-এ শক্তিশালী রেকর্ড গড়ে তোলে।',
+                'journey.entryThreeTitle': '২০২৫–এখন',
+                'journey.entryThreeText': 'ঢাকা কলেজে ভর্তি নিয়ে ওয়েব সিস্টেম, ভূরাজনীতি, দর্শন আর ব্যক্তিগত আর্কাইভে বিস্তৃতি ঘটছে।',
+                'learning.title': 'শিক্ষা',
+                'learning.subtitle': 'একাডেমিক আর্কাইভ এবং অধ্যয়ন প্রক্রিয়া',
+                'learning.labelOne': 'অধ্যয়ন আর্কাইভ',
+                'learning.headingOne': 'বই, নোট, গবেষণা আর দীর্ঘমেয়াদী পর্যবেক্ষণই আমার শিক্ষার মূল চালিকা শক্তি।',
+                'learning.itemOneTitle': 'একাডেমিক পথ',
+                'learning.itemOneText': 'আমার একাডেমিক পথ শুরু হয়েছিল Godnail-এ, চালিয়ে যাওয়া Bornomala Academy-এ, আর এখন Dhaka College-এ বিস্তৃত গবেষণা ও লেখালেখির সঙ্গে।',
+                'learning.itemTwoTitle': 'বর্তমান পড়া',
+                'learning.itemTwoText': 'ভূরাজনীতি, ইতিহাস, দর্শন, সামরিক কৌশল, ওয়েব সিস্টেম আর মানব মনস্তত্ত্ব এখনো কেন্দ্রীয় থিম।',
+                'learning.progressOne': 'ডিজাইন চিন্তা',
+                'learning.progressTwo': 'গবেষণা গভীরতা',
+                'learning.progressThree': 'লেখালেখির স্বচ্ছতা',
+                'learning.labelTwo': 'জ্ঞান-মানচিত্র',
+                'learning.topicOne': 'ভূরাজনৈতিক অধ্যয়ন',
+                'learning.topicOneItemOne': 'বিশ্বব্যবস্থা',
+                'learning.topicOneItemOneText': 'ক্ষমতা, সীমা আর উপলব্ধি বোঝার চেষ্টা।',
+                'learning.topicOneItemTwo': 'কৌশলগত পাঠ',
+                'learning.topicOneItemTwoText': 'নীতি, সংস্কৃতি আর বৈশ্বিক আচরণকে যুক্ত করে ধারণা অনুসরণ করা।',
+                'learning.topicTwo': 'সামরিক অধ্যয়ন',
+                'learning.topicTwoItemOne': 'কৌশল',
+                'learning.topicTwoItemOneText': 'যুদ্ধ, ব্যবস্থা আর মানব সিদ্ধান্ত গ্রহণের যুক্তি বোঝার চেষ্টা করা।',
+                'learning.topicThree': 'সৃজনশীল সিস্টেম',
+                'learning.topicThreeItemOne': 'Blender & UI',
+                'learning.topicThreeItemOneText': '3D, কম্পোজিশন, বায়ুমণ্ডল আর মডুলার ইন্টারফেস চিন্তা।',
+                'milestones.title': 'মাইলস্টোন',
+                'milestones.subtitle': 'সাফল্য, পুরস্কার আর মোড়ঘুরে আসা সময়',
+                'milestones.oneTitle': 'এসএসসি সাফল্য',
+                'milestones.oneText': 'এসএসসি পরীক্ষায় জিপিএ ৪.৮৯ অর্জন ও সাধারণ গ্রেডে মেধা বৃত্তি।',
+                'milestones.twoTitle': 'বিতর্ক ও লেখা স্বীকৃতি',
+                'milestones.twoText': 'বিতর্ক প্রতিযোগিতায় ম্যান অফ দ্য টুর্নামেন্ট ও Essay Writing-এ ১ম স্থান।',
+                'milestones.threeTitle': 'ডিজিটাল আর্কাইভ লঞ্চ',
+                'milestones.threeText': 'শিক্ষা, অর্জন, দর্শন আর সৃজনশীল কাজ এক জায়গায় রাখতে এই ব্যক্তিগত ডিজিটাল আর্কাইভ তৈরি করা হয়েছে।',
+                'roots.title': 'শিকড়',
+                'roots.subtitle': 'পরিবার, বাড়ি আর উৎপত্তি',
+                'roots.labelOne': 'শহরের স্মৃতি',
+                'roots.headingOne': 'নারায়ণগঞ্জই সেই জায়গা, যেখানে আমার প্রথম ঘর, ছন্দ আর belonging-এর অনুভূতি গড়ে ওঠে।',
+                'roots.descriptionOne': 'আমার পরিবারই আমার শক্তি, ধৈর্য আর বিশ্বাসের প্রধান উৎস — আর সেই মূল্যবোধই আমার চিন্তা ও নির্মাণকে আকার দেয়।',
+                'roots.quote': '“আপনি যা বাড়ি থেকে inherit করেন, তা শুধু স্মৃতি নয় — বরং পরবর্তীতে কীভাবে গড়বেন, সেটাও।”',
+                'roots.labelTwo': 'পরিবারের অবলম্বন',
+                'roots.valueText': 'পিতা মানিক মিয়া, মা পন্না আক্তার, এবং বোনেরা সুমাইয়া ও সামিরা — আমার মানসিক ও নৈতিক ভিত্তির মূল অংশ।',
+                'roots.labelThree': 'উৎপত্তির নোট',
+                'roots.originText': 'প্রথম পাঠগুলো এসেছে পর্যবেক্ষণ, পরিবারের প্রভাব আর বিশ্বের বুঝতে চাওয়ার নীরব তাগিদ থেকে।',
+                'philosophy.title': 'দর্শন',
+                'philosophy.subtitle': 'বিশ্বাস, নীতি, বিশ্বদৃষ্টি',
+                'philosophy.labelOne': 'ব্যক্তিগত বিশ্বদৃষ্টি',
+                'philosophy.headingOne': 'নিজের অস্তিত্ব অর্থবহ হয় শৃঙ্খলা, সত্যবাদিতা আর স্পষ্ট মূল্যবোধের মাধ্যমে।',
+                'philosophy.descriptionOne': 'অস্তিত্ব আগে, পরিচয় পরে — আর একটি ভাল জীবন কেবল জোরে আসে না; সে স্থির, মাটির সঙ্গে সংযুক্ত, আর অহংকারবিহীন।',
+                'philosophy.quote': '“মানুষের মৌলিক মনস্তত্ত্বই যেখানে স্বার্থকেন্দ্রিক, সেখানে নৈতিকতার অবস্থান কেবলই আপেক্ষিক।”',
+                'philosophy.labelTwo': 'মূলনীতি',
+                'philosophy.tagOne': 'উদ্দেশ্য',
+                'philosophy.tagTwo': 'সত্য',
+                'philosophy.tagThree': 'শৃঙ্খলা',
+                'philosophy.tagFour': 'একাকীত্ব',
+                'philosophy.labelThree': 'বর্তমান প্রতিফলন',
+                'philosophy.reflection': 'ভবিষ্যৎ কেবল শব্দের দ্বারা গড়ে ওঠে না; বরং ধারাবাহিক স্বচ্ছতা, আন্তরিকতা আর যত্নের কাজের মাধ্যমে।',
+                'studio.title': 'স্টুডিও',
+                'studio.subtitle': 'শখ, পরীক্ষা আর সৃজনশীল কাজ',
+                'studio.labelOne': 'সৃজনশীল অভ্যাস',
+                'studio.headingOne': 'Blender, ফটোগ্রাফি, ওয়েব ডেভেলপমেন্ট আর নিয়ন্ত্রিত পরীক্ষা — সবই একই স্টুডিও মানসিকতার অংশ।',
+                'studio.descriptionOne': 'স্টুডিও যেখানে কৌতূহল রূপ নেয় — কোড, 3D, বা ভিজ্যুয়াল গল্প বলার মাধ্যমে।',
+                'studio.labelTwo': 'ওয়েব সিস্টেম',
+                'studio.webText': 'HTML, CSS আর JavaScript ব্যবহার করে এই পোর্টফোলিওকে একটি জীবন্ত আর্কাইভ হিসেবে গড়ে তোলা হয়েছে।',
+                'studio.labelThree': 'Blender ও ভিজ্যুয়াল ভাষা',
+                'studio.blenderText': '3D, বায়ুমণ্ডল, কম্পোজিশন ব্যবহার করে সিনেমাটিক মুড আর ভিজ্যুয়াল ফর্মের পরীক্ষা করা হয়।',
+                'connect.title': 'যোগাযোগ',
+                'connect.subtitle': 'ডিজিটাল উপস্থিতি আর কথোপকথন',
+                'connect.labelOne': 'যোগাযোগ করুন',
+                'connect.headingOne': 'একটি ব্যক্তিগত যোগাযোগের পথ — সহযোগিতা, নতুন ধারণা বা সহজে কথোপকথনের জন্য।',
+                'connect.descriptionOne': 'যদি কিছু অনুভূত হয়, দরজাটি খোলা থাকবে। এই জগৎ আদান-প্রদান থেকে বাড়ে।',
+                'connect.socialOne': 'ইমেইল',
+                'connect.socialTwo': 'Facebook',
+                'connect.socialThree': 'Instagram',
+                'connect.labelTwo': 'বার্তা ফর্ম',
+                'connect.formName': 'নাম',
+                'connect.formEmail': 'ইমেইল',
+                'connect.formMessage': 'বার্তা',
+                'connect.formSubmit': 'বার্তা পাঠান',
+                'connect.footerOne': 'Abrar.net — একটি যত্নসহকারে গড়ে তোলা ব্যক্তিগত জগত।',
+                'connect.footerTwo': 'একটি ব্যক্তিগত অপারেটিং সিস্টেম হিসেবে তৈরি — চিন্তা, কাজ আর স্মৃতির জন্য।',
+                'command.title': 'পার্সোনাল কমান্ড সেন্টার',
+                'command.heading': 'Abrar-এর ব্যক্তিগত নিয়ন্ত্রণ কক্ষ',
+                'command.summary': 'প্রোফাইল সারাংশ',
+                'command.profileName': 'আবরার হাসান সানিম',
+                'command.profileText': 'নারায়ণগঞ্জের একজন স্বশিক্ষিত ছাত্র, লেখক, গবেষক আর ওয়েব নির্মাতা, যিনি কৌতূহল, শৃঙ্খলা আর কারুশলাকে একসাথে বুনেন।',
+                'command.quickNav': 'দ্রুত নেভিগেশন',
+                'command.search': 'অনুসন্ধান',
+                'command.searchPlaceholder': 'জগত অনুসন্ধান করুন',
+                'command.theme': 'থিম',
+                'command.language': 'ভাষা',
+                'command.map': 'ওয়েবসাইট ম্যাপ',
+                'command.close': 'বন্ধ',
+                'command.updates': 'সাম্প্রতিক হালনাগাদ',
+                'command.updateOne': 'প্রাথমিক বিদ্যালয়, কলেজ আর বৃত্তি-সংক্রান্ত milestones এখন আর্কাইভে সংরক্ষিত।',
+                'command.updateTwo': 'পরিবার, দর্শন, সৃজনশীল কাজ আর আগ্রহগুলো এখন নতুন HQ-তে ম্যাপ করা হয়েছে।',
+                'command.updateThree': 'ব্যক্তিগত অপারেটিং সিস্টেম বাস্তব ইতিহাস আর জীবন্ত বিবরণের সঙ্গে বড় হচ্ছে।',
+                'command.mapLabel': 'ওয়েবসাইট ম্যাপ',
+                'typewriterWords': ['শিক্ষার্থী।', 'পাঠক।', 'লেখক।', 'গবেষণা অনুরাগী।']
+            },
+            en: {
+                'brand.name': 'Abrar.net',
+                'nav.home': 'Home',
+                'nav.journey': 'Journey',
+                'nav.learning': 'Learning',
+                'nav.milestones': 'Milestones',
+                'nav.roots': 'Roots',
+                'nav.philosophy': 'Philosophy',
+                'nav.studio': 'Studio',
+                'nav.connect': 'Connect',
+                'hero.badge': 'Digital HQ / Narayanganj',
+                'hero.firstName': 'Abrar Hasan',
+                'hero.lastName': 'Sanim',
+                'hero.prefix': 'I am a',
+                'hero.description': 'I am a self-taught builder from Narayanganj who thinks across books, research, web craft, Blender, and human psychology. My work centers on structured ideas, elegant interfaces, and a lasting digital home for my story.',
+                'hero.story': '“Where basic human psychology is self-centered, morality is purely relative.”',
+                'hero.btnJourney': 'Enter the universe',
+                'hero.btnConnect': 'Connect',
+                'hero.identityTitle': 'Digital Identity',
+                'hero.identityValue': 'Student • reader • writer • research enthusiast.',
+                'hero.identityMetaOne': 'Private world',
+                'hero.identityMetaTwo': 'Intentional',
+                'hero.goalTitle': 'Current Goal',
+                'hero.goalValue': 'Build a durable archive of thought, craft, and discipline.',
+                'hero.goalMetaOne': 'Long term',
+                'hero.goalMetaTwo': 'Systematic',
+                'hero.focusTitle': 'Learning Focus',
+                'hero.focusValue': 'Academic research, geopolitics, philosophy, and web systems.',
+                'hero.focusMetaOne': 'Research',
+                'hero.focusMetaTwo': 'Craft',
+                'hero.missionTitle': 'Current Mission',
+                'hero.missionValue': 'Create a personal digital home that feels intimate, rigorous, and enduring.',
+                'hero.missionMetaOne': 'Presence',
+                'hero.missionMetaTwo': 'Meaning',
+                'hero.portraitBadge': 'CURRENT FOCUS<br>AI × UX × Systems',
+                'hero.floatOne': 'Live Studio',
+                'hero.floatTwo': 'Ready to Build',
+                'hero.floatThree': 'Status: Active',
+                'hero.scroll': 'Scroll',
+                'journey.title': 'Journey',
+                'journey.subtitle': 'Cinematic life path',
+                'journey.label': 'Origin story',
+                'journey.heading': 'Born in Narayanganj, shaped by family, books, and the need to understand the world.',
+                'journey.description': 'My path has moved from early schooling and academic consistency to research, debate, writing, and building a lasting digital presence.',
+                'journey.quote': '“The earliest lessons came through observation, family influence, and the quiet need to understand the world.”',
+                'journey.entryOneTitle': '2014–2019',
+                'journey.entryOneText': 'Studied at Godnail Govt Primary School; PSC A+ and early discipline created the foundation.',
+                'journey.entryTwoTitle': '2020–2024',
+                'journey.entryTwoText': 'Continued at Bornomala Academy and built a strong record in academics, debate, and writing.',
+                'journey.entryThreeTitle': '2025–Now',
+                'journey.entryThreeText': 'Admitted to Dhaka College while expanding into web systems, geopolitics, philosophy, and personal archives.',
+                'learning.title': 'Learning',
+                'learning.subtitle': 'Academic archive and study rhythm',
+                'learning.labelOne': 'Study archive',
+                'learning.headingOne': 'Books, notes, research, and long-form observation form the core of my learning rhythm.',
+                'learning.itemOneTitle': 'Academic path',
+                'learning.itemOneText': 'My academic path began at Godnail, continued through Bornomala Academy, and now extends into Dhaka College with broader research and writing.',
+                'learning.itemTwoTitle': 'Current reading',
+                'learning.itemTwoText': 'Geopolitics, history, philosophy, military strategy, web systems, and human psychology remain central themes.',
+                'learning.progressOne': 'Design thinking',
+                'learning.progressTwo': 'Research depth',
+                'learning.progressThree': 'Writing discipline',
+                'learning.labelTwo': 'Knowledge map',
+                'learning.topicOne': 'Geopolitical study',
+                'learning.topicOneItemOne': 'World systems',
+                'learning.topicOneItemOneText': 'Understanding power, borders, and perception through history and current events.',
+                'learning.topicOneItemTwo': 'Strategic reading',
+                'learning.topicOneItemTwoText': 'Tracking ideas that connect policy, culture, and global behavior.',
+                'learning.topicTwo': 'Military studies',
+                'learning.topicTwoItemOne': 'Strategy',
+                'learning.topicTwoItemOneText': 'Reading the logic behind campaigns, systems, and human decision-making.',
+                'learning.topicThree': 'Creative systems',
+                'learning.topicThreeItemOne': 'Blender & UI',
+                'learning.topicThreeItemOneText': 'Exploring 3D, composition, atmosphere, and modular interface thinking.',
+                'milestones.title': 'Milestones',
+                'milestones.subtitle': 'Achievements, awards, and turning points',
+                'milestones.oneTitle': 'SSC excellence',
+                'milestones.oneText': 'Achieved GPA 4.89 in SSC and secured a General Grade Merit Scholarship.',
+                'milestones.twoTitle': 'Debate and writing recognition',
+                'milestones.twoText': 'Won recognition as Man of the Tournament in debate competitions and secured 1st place in essay writing.',
+                'milestones.threeTitle': 'Digital archive launch',
+                'milestones.threeText': 'Built this personal digital archive to hold education, achievements, philosophy, and creative work in one place.',
+                'roots.title': 'Roots',
+                'roots.subtitle': 'Family, hometown, and origins',
+                'roots.labelOne': 'Hometown memory',
+                'roots.headingOne': 'Narayanganj remains the place where my earliest sense of home, rhythm, and belonging was formed.',
+                'roots.descriptionOne': 'My family remains the strongest source of strength, patience, and conviction — and those values continue to shape how I think and build.',
+                'roots.quote': '“What you inherit from home is not only memory, but the way you later choose to build.”',
+                'roots.labelTwo': 'Family anchors',
+                'roots.valueText': 'Father Manik Mia, mother Panna Akter, and sisters Sumaiya and Samira are the core of my emotional and moral foundation.',
+                'roots.labelThree': 'Origin note',
+                'roots.originText': 'The earliest lessons came through observation, family influence, and the quiet need to understand the world.',
+                'philosophy.title': 'Philosophy',
+                'philosophy.subtitle': 'Beliefs, principles, worldview',
+                'philosophy.labelOne': 'Private worldview',
+                'philosophy.headingOne': 'The self becomes meaningful through disciplined work, honest thought, and clear values.',
+                'philosophy.descriptionOne': 'Existence precedes identity, and a good life is not loud — it is consistent, grounded, and built without vanity.',
+                'philosophy.quote': '“Where basic human psychology is self-centered, morality is purely relative.”',
+                'philosophy.labelTwo': 'Core principles',
+                'philosophy.tagOne': 'Purpose',
+                'philosophy.tagTwo': 'Truth',
+                'philosophy.tagThree': 'Discipline',
+                'philosophy.tagFour': 'Solitude',
+                'philosophy.labelThree': 'Current reflection',
+                'philosophy.reflection': 'The future is built not by noise alone, but by repeated acts of clarity, sincerity, and care.',
+                'studio.title': 'Studio',
+                'studio.subtitle': 'Hobbies, experiments, and creative work',
+                'studio.labelOne': 'Creative practice',
+                'studio.headingOne': 'Blender, photography, web development, and controlled experimentation all belong to the same studio mindset.',
+                'studio.descriptionOne': 'The studio is where curiosity becomes form — whether in code, 3D, or visual storytelling.',
+                'studio.labelTwo': 'Web systems',
+                'studio.webText': 'Built this portfolio as a live archive of thought, using HTML, CSS, and JavaScript to shape a modular interface with clear motion.',
+                'studio.labelThree': 'Blender & visual language',
+                'studio.blenderText': 'Using 3D, atmosphere, and composition to create cinematic moods and experiment with visual form.',
+                'connect.title': 'Connect',
+                'connect.subtitle': 'Digital presence and conversation',
+                'connect.labelOne': 'Reach out',
+                'connect.headingOne': 'A private channel for conversation, collaboration, or a new idea.',
+                'connect.descriptionOne': 'If something resonates, the door stays open. The universe grows through exchange.',
+                'connect.socialOne': 'Email',
+                'connect.socialTwo': 'Facebook',
+                'connect.socialThree': 'Instagram',
+                'connect.labelTwo': 'Message form',
+                'connect.formName': 'Name',
+                'connect.formEmail': 'Email',
+                'connect.formMessage': 'Message',
+                'connect.formSubmit': 'Send message',
+                'connect.footerOne': 'Abrar.net — a personal universe shaped with care.',
+                'connect.footerTwo': 'Built as a private operating system for thought, work, and memory.',
+                'command.title': 'Personal Command Center',
+                'command.heading': 'Abrar\'s private control room',
+                'command.summary': 'Profile Summary',
+                'command.profileName': 'Abrar Hasan Sanim',
+                'command.profileText': 'A self-taught student, writer, researcher, and web builder from Narayanganj whose work blends discipline, curiosity, and craft.',
+                'command.quickNav': 'Quick Navigation',
+                'command.search': 'Search',
+                'command.searchPlaceholder': 'Search the universe',
+                'command.theme': 'Theme',
+                'command.language': 'Language',
+                'command.map': 'Website Map',
+                'command.close': 'Close',
+                'command.updates': 'Recent Updates',
+                'command.updateOne': 'Primary school, college, and scholarship milestones now preserved in the archive.',
+                'command.updateTwo': 'Family, philosophy, creative work, and interests are now mapped into the new HQ.',
+                'command.updateThree': 'The personal operating system continues to grow with real history and lived detail.',
+                'command.mapLabel': 'Website Map',
+                'typewriterWords': ['Student.', 'Reader.', 'Writer.', 'Research enthusiast.']
+            }
+        };
+
+        let currentLanguage = 'bn';
+
+        function initNavbar() {
+            const navbar = document.getElementById('siteNavbar');
+            const menuToggle = document.getElementById('menuToggle');
+            const drawer = document.querySelector('.mobile-drawer');
+            const navLinks = document.querySelectorAll('.navbar > .nav-links a, .mobile-drawer .nav-links a');
+            const commandPanel = document.getElementById('commandPanel');
+            const commandBackdrop = document.getElementById('commandPanelBackdrop');
+            const closeCommandPanel = document.getElementById('closeCommandPanel');
+
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('scrolled', window.scrollY > 20);
+            });
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    commandPanel.classList.toggle('open');
+                    commandBackdrop.classList.toggle('open');
+                });
+            }
+
+            if (closeCommandPanel) {
+                closeCommandPanel.addEventListener('click', () => {
+                    commandPanel.classList.remove('open');
+                    commandBackdrop.classList.remove('open');
+                });
+            }
+
+            if (commandBackdrop) {
+                commandBackdrop.addEventListener('click', () => {
+                    commandPanel.classList.remove('open');
+                    commandBackdrop.classList.remove('open');
+                });
+            }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    commandPanel.classList.remove('open');
+                    commandBackdrop.classList.remove('open');
+                }
+            });
+
+            if (drawer) {
+                drawer.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => commandPanel.classList.remove('open'));
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+                    }
+                });
+            }, { threshold: 0.45 });
+
+            document.querySelectorAll('section[id]').forEach(section => sectionObserver.observe(section));
+        }
+
+        function initHero() {
+            const hero = document.querySelector('.hero-section');
+            const portraitFrame = document.querySelector('.hero-portrait-frame');
+            const glow = document.querySelector('.portrait-glow');
+
+            if (!hero || !portraitFrame) return;
+
+            let targetX = 0;
+            let targetY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let frameId = null;
+
+            function updateFrame() {
+                currentX += (targetX - currentX) * 0.12;
+                currentY += (targetY - currentY) * 0.12;
+                portraitFrame.style.transform = `rotateY(${(-7 + currentX * 10).toFixed(2)}deg) rotateX(${(4 - currentY * 10).toFixed(2)}deg) scale(${1 + Math.abs(currentX) * 0.006})`;
+                if (glow) {
+                    glow.style.transform = `translate3d(${currentX * 18}px, ${currentY * 18}px, 0)`;
+                }
+                document.documentElement.style.setProperty('--cursor-x', `${50 + currentX * 20}%`);
+                document.documentElement.style.setProperty('--cursor-y', `${50 + currentY * 20}%`);
+                if (Math.abs(targetX - currentX) < 0.001 && Math.abs(targetY - currentY) < 0.001) {
+                    cancelAnimationFrame(frameId);
+                    frameId = null;
+                    return;
+                }
+                frameId = requestAnimationFrame(updateFrame);
+            }
+
+            function setInteraction(clientX, clientY) {
+                const rect = hero.getBoundingClientRect();
+                const x = ((clientX - rect.left) / rect.width - 0.5) * 2;
+                const y = ((clientY - rect.top) / rect.height - 0.5) * 2;
+                targetX = Math.max(-1, Math.min(1, x));
+                targetY = Math.max(-1, Math.min(1, y));
+                portraitFrame.classList.add('is-hovered');
+                if (!frameId) frameId = requestAnimationFrame(updateFrame);
+            }
+
+            hero.addEventListener('pointermove', (event) => {
+                setInteraction(event.clientX, event.clientY);
+            });
+
+            hero.addEventListener('pointerleave', () => {
+                targetX = 0;
+                targetY = 0;
+                portraitFrame.classList.remove('is-hovered');
+                if (!frameId) frameId = requestAnimationFrame(updateFrame);
+            });
+
+            hero.addEventListener('touchmove', (event) => {
+                const touch = event.touches[0];
+                if (touch) setInteraction(touch.clientX, touch.clientY);
+            }, { passive: true });
+
+            hero.addEventListener('touchend', () => {
+                targetX = 0;
+                targetY = 0;
+                portraitFrame.classList.remove('is-hovered');
+                if (!frameId) frameId = requestAnimationFrame(updateFrame);
+            });
+        }
+
+        function initReveal() {
+            const revealItems = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                revealItems.forEach(item => item.classList.add('active'));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.16 });
+
+            revealItems.forEach(item => observer.observe(item));
+        }
+
+        function initTypewriter() {
+            const typewriter = document.getElementById('typewriter');
+            if (!typewriter) return;
+
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typeTimer = null;
+
+            function startTypewriter() {
+                const words = translations[currentLanguage].typewriterWords || translations.bn.typewriterWords;
+                clearTimeout(typeTimer);
+
+                function type() {
+                    const currentWord = words[wordIndex];
+                    typewriter.textContent = isDeleting
+                        ? currentWord.substring(0, charIndex - 1)
+                        : currentWord.substring(0, charIndex + 1);
+
+                    charIndex += isDeleting ? -1 : 1;
+
+                    let speed = isDeleting ? 50 : 100;
+                    if (!isDeleting && charIndex === currentWord.length) {
+                        speed = 2000;
+                        isDeleting = true;
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        wordIndex = (wordIndex + 1) % words.length;
+                        speed = 500;
+                    }
+
+                    typeTimer = setTimeout(type, speed);
+                }
+
+                typeTimer = setTimeout(type, 900);
+            }
+
+            startTypewriter();
+            return startTypewriter;
+        }
+
+        function initClock() {
+            const timeElement = document.getElementById('real-time');
+            if (!timeElement) return;
+
+            const updateTime = () => {
+                const now = new Date();
+                const h = String(now.getHours()).padStart(2, '0');
+                const m = String(now.getMinutes()).padStart(2, '0');
+                const s = String(now.getSeconds()).padStart(2, '0');
+                timeElement.textContent = `${h}:${m}:${s}`;
+            };
+
+            updateTime();
+            setInterval(updateTime, 1000);
+        }
+
+        function applyTranslations() {
+            const data = translations[currentLanguage];
+            document.documentElement.setAttribute('lang', currentLanguage);
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (data[key]) {
+                    element.innerHTML = data[key];
+                }
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (data[key]) {
+                    element.setAttribute('placeholder', data[key]);
+                }
+            });
+            document.querySelectorAll('[data-language]').forEach(button => {
+                button.classList.toggle('active', button.getAttribute('data-language') === currentLanguage);
+                button.style.background = button.getAttribute('data-language') === currentLanguage ? 'var(--accent-gold)' : 'transparent';
+                button.style.color = button.getAttribute('data-language') === currentLanguage ? '#000' : 'var(--text-muted)';
+            });
+        }
+
+        function initLanguage() {
+            document.querySelectorAll('[data-language]').forEach(button => {
+                button.addEventListener('click', () => {
+                    currentLanguage = button.getAttribute('data-language');
+                    applyTranslations();
+                });
+            });
+            applyTranslations();
+        }
+
+        function initTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const root = document.documentElement;
+            if (!themeToggle) return;
+
+            themeToggle.addEventListener('click', () => {
+                const isLight = root.getAttribute('data-theme') === 'light';
+                root.setAttribute('data-theme', isLight ? 'dark' : 'light');
+                themeToggle.textContent = isLight ? '🌙' : '☀️';
+            });
+        }
+
+        function initCursor() {
+            const glow = document.getElementById('cursorGlow');
+            if (!glow) return;
+            window.addEventListener('pointermove', (event) => {
+                glow.style.transform = `translate(${event.clientX - 80}px, ${event.clientY - 80}px)`;
+                glow.style.opacity = '1';
+            });
+            window.addEventListener('pointerleave', () => {
+                glow.style.opacity = '0';
+            });
+        }
+
+        function initParticles() {
+            const layer = document.getElementById('particleLayer');
+            if (!layer) return;
+            for (let i = 0; i < 18; i += 1) {
+                const dot = document.createElement('span');
+                dot.className = 'particle';
+                dot.style.left = `${Math.random() * 100}%`;
+                dot.style.top = `${Math.random() * 100}%`;
+                dot.style.animationDelay = `${Math.random() * 6}s`;
+                layer.appendChild(dot);
+            }
+        }
+
+        function initTabs() {
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+                    button.classList.add('active');
+                    document.getElementById(`${button.dataset.tab}Panel`).classList.add('active');
+                });
+            });
+        }
+
+        function initAnimations() {
+            initNavbar();
+            initHero();
+            initReveal();
+            initTypewriter();
+            initClock();
+            initLanguage();
+            initTheme();
+            initCursor();
+            initParticles();
+            initTabs();
+        }
+
+        window.addEventListener('DOMContentLoaded', initAnimations);
+    </script>
+</body>
+</html>
