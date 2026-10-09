@@ -646,41 +646,7 @@
             animation: scroll 1.5s ease-in-out infinite;
         }
 
-        .hero-quick-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
-            max-width: 1500px;
-            margin: 0 auto 30px;
-            position: relative;
-            z-index: 3;
-            padding: 0 5%;
-        }
-
-        .quick-nav-card {
-            padding: 16px 18px;
-            border-radius: 18px;
-            border: 1px solid var(--panel-border);
-            background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-            color: var(--text-main);
-            backdrop-filter: blur(12px);
-            transition: all 0.25s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: var(--font-en);
-            font-size: 0.82rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-        }
-
-        .quick-nav-card:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-3px);
-        }
-
-        .quick-nav-card span { color: var(--accent-gold); }
-
+        
         /* ================= PERSONAL COMMAND CENTER ================= */
         .command-panel-backdrop {
             position: fixed;
@@ -1649,28 +1615,7 @@
                     <a href="#connect" class="btn-outline" data-i18n="hero.btnConnect">Connect</a>
                 </div>
 
-                <div class="identity-grid">
-                    <div class="glass-card identity-card">
-                        <div class="card-label" data-i18n="hero.identityTitle">Digital Identity</div>
-                        <h3 class="card-title" data-i18n="hero.identityValue">Student • reader • writer • research enthusiast.</h3>
-                        <div class="identity-meta"><span data-i18n="hero.identityMetaOne">Private world</span><span data-i18n="hero.identityMetaTwo">Intentional</span></div>
-                    </div>
-                    <div class="glass-card identity-card">
-                        <div class="card-label" data-i18n="hero.goalTitle">Current Goal</div>
-                        <h3 class="card-title" data-i18n="hero.goalValue">Build a durable archive of thought, craft, and discipline.</h3>
-                        <div class="identity-meta"><span data-i18n="hero.goalMetaOne">Long term</span><span data-i18n="hero.goalMetaTwo">Systematic</span></div>
-                    </div>
-                    <div class="glass-card identity-card">
-                        <div class="card-label" data-i18n="hero.focusTitle">Learning Focus</div>
-                        <h3 class="card-title" data-i18n="hero.focusValue">Academic research, geopolitics, philosophy, and web systems.</h3>
-                        <div class="identity-meta"><span data-i18n="hero.focusMetaOne">Research</span><span data-i18n="hero.focusMetaTwo">Craft</span></div>
-                    </div>
-                    <div class="glass-card identity-card">
-                        <div class="card-label" data-i18n="hero.missionTitle">Current Mission</div>
-                        <h3 class="card-title" data-i18n="hero.missionValue">Create a personal digital home that feels intimate, rigorous, and enduring.</h3>
-                        <div class="identity-meta"><span data-i18n="hero.missionMetaOne">Presence</span><span data-i18n="hero.missionMetaTwo">Meaning</span></div>
-                    </div>
-                </div>
+                
             </div>
 
             <div class="hero-portrait-area reveal">
