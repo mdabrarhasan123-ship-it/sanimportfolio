@@ -1001,15 +1001,12 @@
     </style>
 </head>
 <body>
-    <!-- HTML content continues here -->
-    
+
     <script>
         function initNavbar() {
             const navbar = document.querySelector('.navbar');
             const navLinks = document.querySelectorAll('.nav-links a');
-            const menuToggle = document.querySelector('.menu-toggle');
 
-            // Navbar scroll effect
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 20) {
                     navbar.classList.add('scrolled');
@@ -1018,7 +1015,6 @@
                 }
             });
 
-            // NavLink click handling
             navLinks.forEach(link => {
                 link.addEventListener('click', function () {
                     navLinks.forEach(item => item.classList.remove('active'));
@@ -1026,16 +1022,11 @@
                 });
             });
 
-            // Intersection Observer for section tracking
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const sectionId = entry.target.id;
-                        
-                        // Remove active from all links
                         navLinks.forEach(link => link.classList.remove('active'));
-                        
-                        // Add active to matching link
                         const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
                         if (activeLink) {
                             activeLink.classList.add('active');
@@ -1044,10 +1035,7 @@
                 });
             }, { threshold: 0.45 });
 
-            // Observe all sections
-            document.querySelectorAll('section[id]').forEach(section => {
-                sectionObserver.observe(section);
-            });
+            document.querySelectorAll('section[id]').forEach(section => sectionObserver.observe(section));
         }
 
         function initHero() {
@@ -1114,11 +1102,11 @@
             });
         }
 
-        // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', () => {
             initNavbar();
             initHero();
         });
     </script>
+
 </body>
 </html>
